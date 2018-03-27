@@ -12,10 +12,11 @@ cache:
     - $HOME/.gradle
 
 script:
-  - if [[ $TRAVIS_COMMIT_MESSAGE == *"[major release]"* ]]; then println '>>MAJOR RELEASE<<' ; fi ;
-  - if [[ $TRAVIS_COMMIT_MESSAGE == *"[minor release]"* ]]; then println '>>MINOR RELEASE<<' ; fi ;
-  - if [[ $TRAVIS_COMMIT_MESSAGE == *"[patch release]"* ]]; then println '>>PATCH RELEASE<<' ; fi ;
-  - ./gradlew build
+  - SNAPSHOT_BUILD = 1
+  - if [[ $TRAVIS_COMMIT_MESSAGE == *"[major release]"* ]]; then ./gradlew build release; println '>>MAJOR RELEASE<<' ; SNAPSHOT_BUILD = 0; fi ;
+  - if [[ $TRAVIS_COMMIT_MESSAGE == *"[minor release]"* ]]; then ./gradlew build release; println '>>MINOR RELEASE<<' ; SNAPSHOT_BUILD = 0; fi ;
+  - if [[ $TRAVIS_COMMIT_MESSAGE == *"[patch release]"* ]]; then ./gradlew build release; println '>>PATCH RELEASE<<' ; SNAPSHOT_BUILD = 0; fi ;
+  - if [[ SNAPSHOT_BUILD == 1]] then ./gradlew build; fi ;
 
 after_success:
   - println '>>SUCCESS!<<'
