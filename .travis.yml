@@ -16,7 +16,7 @@ script:
   - if [[ $TRAVIS_COMMIT_MESSAGE == *"[major release]"* ]]; then ./gradlew build release; println '>>MAJOR RELEASE<<' ; SNAPSHOT_BUILD = 0; fi ;
   - if [[ $TRAVIS_COMMIT_MESSAGE == *"[minor release]"* ]]; then ./gradlew build release; println '>>MINOR RELEASE<<' ; SNAPSHOT_BUILD = 0; fi ;
   - if [[ $TRAVIS_COMMIT_MESSAGE == *"[patch release]"* ]]; then ./gradlew build release; println '>>PATCH RELEASE<<' ; SNAPSHOT_BUILD = 0; fi ;
-  - if [[ ($TRAVIS_COMMIT_MESSAGE != *"[major release]"*) && ($TRAVIS_COMMIT_MESSAGE != *"[minor release]"*) && ($TRAVIS_COMMIT_MESSAGE == *"[patch release]"*) ]] then ./gradlew build; fi ;
+  - if [[ ($TRAVIS_COMMIT_MESSAGE != *"[major release]"*) && ($TRAVIS_COMMIT_MESSAGE != *"[minor release]"*) && ($TRAVIS_COMMIT_MESSAGE != *"[patch release]"*) ]] then ./gradlew build; fi ;
 
 after_success:
   - println '>>SUCCESS!<<'
