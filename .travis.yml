@@ -12,8 +12,7 @@ cache:
     - $HOME/.gradle
 
 script:
-  - if [[ $TRAVIS_COMMIT_MESSAGE =~ "[release]" ]]; then ./gradlew build ; fi ;
-  - if [[ $TRAVIS_COMMIT_MESSAGE == "[release]" ]]; then ./gradlew build release ; fi ;
+  - ./gradlew build release
 
 after_success:
   - if [[ $TRAVIS_COMMIT_MESSAGE == "[release]" ]]; then ./gradlew release; println '>>MAJOR RELEASE<<' ; fi ;
