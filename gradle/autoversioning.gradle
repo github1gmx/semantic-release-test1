@@ -15,7 +15,7 @@ class SemanticVersion {
         } else if(releaseType == "minor") {
             return new SemanticVersion(major:major, minor:minor+1, bugfix:0, extension:"SNAPSHOT")
         } else {
-            return new SemanticVersion(major:major, minor:minor, bugfix:bugfix+1, extension: "SNAPSHOT")
+            return new SemanticVersion(major:major, minor:minor, bugfix:bugfix+1, extension:"SNAPSHOT")
         }
     }
 
